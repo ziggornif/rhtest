@@ -9,3 +9,7 @@ ports:
     visibility: public
   - port: 3000
     visibility: public
+vscode:
+  extensions:
+    - "ms-azuretools.vscode-docker"
+    - ZixuanChen.vitest-explorer
