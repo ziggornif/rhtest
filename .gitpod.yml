@@ -1,5 +1,5 @@
 tasks:
-  - command: docker compose -f docker-compose-monitoring.yml up -d
+  - command: docker compose -f apps/docker-compose-monitoring.yml up -d
 ports:
   - port: 8080
     visibility: public
