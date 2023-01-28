@@ -10,7 +10,7 @@ Il est donc intéressant de vérifier qu’une API reste stable et respecte son 
 temps. Pour cela il faut créer des tests fonctionnels et automatiser leur lancement pour qu’ils soient
 exécutés lors de l’intégration continue.
 
-SoapUI, en se basant sur les contrats, permet de créer rapidement de nouveaux cas
+Postman, en se basant sur les contrats, permet de créer rapidement de nouveaux cas
 de tests, avant même que le travail de développement soit commencé (Contract First, Test Driven
 Development).
 
@@ -21,94 +21,54 @@ standard représentant 80% des appels effectués).
 La variabilisation des données (Data Driven Testing) ainsi que le changement d'endpoint (cible)
 permettent de rejouer facilement une suite de tests sur plusieurs environnements.
 
-SoapUI permet de mettre en place une suite de tests qui peut être lancée d’une traite du côté client,
-permet de tester les services web en mode bouchon mais aussi d’effectuer des tests de charge. Aussi,
-Il dispose de plusieurs fonctionnalités qui font de lui un bon allié pour les développeurs et les
-testeurs:
-
-- Tests fonctionnels et de non régression,
-- Tests de sécurité automatique,
-- Test de charge - avec LoadUI,
-- Mock d'un service
-- Intégration au processus de build
-
-Aller vite à l’essentiel en sortant de ce cours avec ces 3 ressources :
-
-[getting-started](https://www.soapui.org/getting-started.html)
-
-[features](https://www.soapui.org/open-source/features.html)
-
-[testing-dojo](https://www.soapui.org/testing-dojo.html)
-
-## Livrable
-
-Le livrable de ce TP est un dossier de tests :
-- Votre référentiel d'exigences
-- Le Workspace SoapUI contenant les ressources demandées ainsi que les cas de test et leurs assertions.
-- Les résultats du test fonctionnel commentés par les analyses de l’étudiant sur chacun des cas de tests
-- Une conclusion sur les cas de test OK ou KO afin de montrer la bonne exécution du test fonctionnel ou de montrer les défaillances constatées.
-
-
 ## Pré requis
 
- 1. Installation de l'application RhTest
+ 1. Démarrer l'application RhTest
  2. Disposer du référentiel d'exigences
- 3. Installer SoapUI Open Source disponible [ici](https://www.soapui.org/downloads/soapui.html)  la version disponible ) ce jour est 5.7.0 
+ 3. Installer Postman Open Source disponible [ici](https://www.postman.com/)
 
 ## Travail à réaliser
 
 Vous êtes en charge des tests des API en ligne fournis avec l'application RhTest.
 
-### Lancer SoapUI
+### Lancer Postman
 
 #### Création du projet et des ressources à utiliser
-Créer un nouveau projet vide et votre première ressource
+Créer un nouveau projet vide
 
-![Gif créer ressources](img/ressources.gif)
+![Créer ressources](img/01.png)
 
 #### Création d’une suite de test et d’un cas de test
-Dans SoapUi, les tests sont décomposés en 3 niveaux : TestSuite, TestCase et TestStep.
+Créer une premiere requête
 
-- Une suite de test est une collection de cas de tests qui ciblent une même fonctionnalité ou qui ont une
-unité logique.
-- Un cas de test est une collection d’étapes de tests qui sont assemblées de manière à tester un aspect
-du service.
-- L’étape de test est donc le bloc de construction du test fonctionnel.
+![Créer une requête](img/02.png)
 
-![Gif créer suite de test](img/testsuite.gif)
+Compléter la requête
+![Compléter la requête](img/03.png)
+1- titre de la requête   
+2- endPoint (exposition)   
+3- les paramètres de requête.
+
+Les APIs de l'application sont décrites sur le port 8080
+
+![Swagger](img/04.png)
+
+Exemple complet
+![Get mode all](img/05.png)
+
+#### Les varialbles
+Exemples de variables, ici la base URL
+![Variabke](img/06.png)
 
 #### Les assertions
 
 Exemple d'assertion :
 
+Assert Content
+![Assert](img/07.png)
+
 Assert Status
-![Gif status code](img/assert_status.gif)
-
-Assert script
-![Gif assert script](img/assert_script.gif)
-```
-import groovy.json.JsonSlurper
-def response = messageExchange.response.responseContent
-def slurper = new JsonSlurper()
-def json = slurper.parseText response
-
-assert json.size() == 2
-
-```
-
-```
-import groovy.json.JsonSlurper
-def response = messageExchange.response.responseContent
-def slurper = new JsonSlurper()
-def json = slurper.parseText response
-
-assert json[0].id == 'SAL2'
-
-```
-
-Assert jsonPath
-![Gif assert jsonPathCount](img/assert_jsonpath.gif)
-![Gif assert jsonPath](img/assert_jsonpath2.gif)
+![Assert](img/08.png)
 
 
 #### La suite du TP
