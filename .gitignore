@@ -10,4 +10,4 @@ config/runtime.json
 .sonar/
 .idea/
 npm-shrinkwrap.json.project
-package - Copie.json
+.env

@@ -1,7 +1,7 @@
 <template>
   <h3 v-if="!creation">Mise à jour de l'employé {{ employee.id }}</h3>
   <form @submit.prevent="submit">
-    <label>Matricule: <input v-model="employee.id" placeholder="ID"></label>
+    <label>Matricule: <input v-model="employee.id" placeholder="ID" :disabled="!creation"></label>
     <div class="grid">
       <label>Nom: <input v-model="employee.name" placeholder="Nom"></label>
       <label>Prénom: <input v-model="employee.lastname" placeholder="Prénom"></label>
@@ -18,8 +18,8 @@
 </template>
 
 <script setup>
- import { defineEmits,ref } from 'vue'
- import { emptyEmployee } from '../services/employee.service'
+import { defineEmits, reactive } from 'vue'
+import { emptyEmployee } from '../services/employee.service'
 
 const props = defineProps({
   id: String,
@@ -33,7 +33,21 @@ const emit = defineEmits(['created', 'updated'])
 
 const creation = !props.id?.length
 
-let employee = creation ? {
+// let employee = creation ? {
+//   id: "",
+//   name: "",
+//   lastname: "",
+//   level: "",
+//   salary: ""
+// } : {
+//   id: props.id,
+//   name: props.name,
+//   lastname: props.lastname,
+//   level: props.level,
+//   salary: props.salary,
+// }
+
+const employee = reactive(creation ? {
   id: "",
   name: "",
   lastname: "",
@@ -45,11 +59,15 @@ let employee = creation ? {
   lastname: props.lastname,
   level: props.level,
   salary: props.salary,
+});
+
+function resetForm() {
+  Object.assign(employee, emptyEmployee);
 }
 
 const submit = () => {
-  emit(creation ? "created": "updated", employee);
-  employee = emptyEmployee;
+  emit(creation ? "created" : "updated", employee);
+  resetForm();
 }
 
 </script>

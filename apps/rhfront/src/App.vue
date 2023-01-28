@@ -5,11 +5,11 @@
         <h1>RhTest</h1>
 
         <div class="error" v-if="errorMessage">
-          <p>Une erreur est survenue : {{errorMessage}}</p>
+          <p>Une erreur est survenue : {{ errorMessage }}</p>
         </div>
 
         <h2>Création d'un salarié :</h2>
-        <Employee @created="createdEvent"/>
+        <Employee @created="createdEvent" />
         <h2>Liste des salariés :</h2>
         <form>
           <div class="grid">
@@ -97,7 +97,7 @@ export default {
     },
     toggleUpdate(employee) {
       this.updateMode = !this.updateMode;
-      if(this.updateMode) {
+      if (this.updateMode) {
         this.employee = employee;
       } else {
         this.employee = emptyEmployee;
@@ -152,9 +152,7 @@ export default {
   margin: 0.25rem;
 }
 
-.error > p {
+.error>p {
   color: #e53935;
 }
-
-
 </style>
