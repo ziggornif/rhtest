@@ -8,15 +8,9 @@ Aujourd'hui, nous utiliserons l'outil Selenium Ide qui permet de réaliser d'enr
 
 ![Copie d'écran de l'application RhTest](img/screenshot.png)
 
-## Livrable
-
-Le livrable de ce TP est un dossier de tests présentant :
-- Les cas de test implémentés dans Selenium Ide et enregistré au format .side
-
-
 ## Pré requis
 
- 1. Installation de l'application RhTest
+ 1. Démarrer l'application RhTest
  2. Disposer du référentiel d'exigences
  3. Installer le plugin Chrome ou Firefox Selenium IDE depuis la page https://www.selenium.dev/selenium-ide/
 
@@ -68,10 +62,6 @@ Ce volet permet de détailler chacune des actions de test et des points de contr
 
 Ce volet permet de consolider le nombre de test passant ou en échec. Le détail de l'éxécution se trouve quanà un lui dans un journal d'exécution en bas de la fenêtre SideeX.
 
-
-
-
- 
 ## Travail à réaliser
 
  - Automatiser les exigences critiques d'abord,
