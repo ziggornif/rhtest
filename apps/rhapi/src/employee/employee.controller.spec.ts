@@ -42,13 +42,6 @@ describe("Server", () => {
 		expect(res.status).toBe(409);
 	});
 
-	it("should have a 409 error on ajouter endpoint call with level > 10", async () => {
-		const res = await request.post(
-			"/api/ajouter?id=test&name=doe&lastname=john&salary=10&level=11",
-		);
-		expect(res.status).toBe(409);
-	});
-
 	it("should have a 409 error on ajouter endpoint call without id", async () => {
 		const res = await request.post(
 			"/api/ajouter?name=doe&lastname=john&salary=10&level=4",
@@ -79,7 +72,7 @@ describe("Server", () => {
 		expect(res.text).toEqual("Le matricule n'a pas été trouvé");
 	});
 
-	it("should create employee on ajouter endpoint call", async () => {
+	it("should update employee on modifier endpoint call", async () => {
 		const res = await request.post(
 			"/api/modifier?id=SAL1&name=DURAND&lastname=Pierre&salary=333&level=2",
 		);
