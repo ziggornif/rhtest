@@ -103,3 +103,7 @@ Une fois l'API en place :
 
 - Ajouter un nouveau champ de recherche dans l'application rhfront (`apps/rhfront/src/App.vue`)
 - Brancher les appels à la nouvelle route d'API dans le fichier `apps/rhfront/src/services/employee.service.js`
+
+## Ressources
+
+- Cours : https://drouian-m.github.io/tdd-workshop
