@@ -46,7 +46,17 @@ Toute modification de code ou ajout de test relancera la suite de tests.
 
 Les tests seront à écrire dans le fichier `apps/rhapi/src/employee/employee.service.spec.ts`.
 
-### Exo 1 : Ajouter un contrôle sur le nom et le prénom
+### Exo 1 : Contrôler la présence du nom
+
+La méthode `getByName` de la classe `EmployeeService` ne vérifie pas le nom passé en paramètre.
+
+Ajouter un contrôle pour s'assurer que le nom envoyé n'est pas vide.
+
+Si le paramètre envoyé est vide, retourner le message suivant :
+
+> Le nom est obligatoire
+
+### Exo 2 : Ajouter un contrôle sur le nom et le prénom
 
 La classe `EmployeeService` ne contrôle pas que les champs nom et prénom ne contiennent pas de caractères numériques.
 
@@ -70,7 +80,7 @@ Si le prénom de l'employée contient un ou plusieurs caractères numériques, r
 
 Appliquer le même contrôle sur la modification d'employés (méthode `update`).
 
-### Exo 2 : Ajouter la récupération d'un employé par matricule
+### Exo 3 : Ajouter la récupération d'un employé par matricule
 
 La classe `EmployeeService` possède actuellement une méthode `getByName` utilisée par la recherche côté UI.
 
