@@ -60,6 +60,16 @@ function containsNumbers(str: string) {
 }
 ```
 
+Si le nom de l'employée contient un ou plusieurs caractères numériques, retourner le message suivant :
+
+> Le nom doit contenir uniquement des caractères alphabétiques
+
+Si le prénom de l'employée contient un ou plusieurs caractères numériques, retourner le message suivant :
+
+> Le prénom doit contenir uniquement des caractères alphabétiques
+
+Appliquer le même contrôle sur la modification d'employés (méthode `update`).
+
 ### Exo 2 : Ajouter la récupération d'un employé par matricule
 
 La classe `EmployeeService` possède actuellement une méthode `getByName` utilisée par la recherche côté UI.
@@ -70,9 +80,13 @@ Implémenter une nouvelle méthode `getById` permettant de récupérer un usager
 
 Cette méthode devra prendre un id en entrée et retourner un employé en sortie.
 
-Si l'employé n'est pas trouvé, retourner le message suivant : "L'employé {id} n'a pas été trouvé".
+Si l'employé n'est pas trouvé, retourner le message suivant :
 
-Si la méthode est appelée sans id, retourner le message suivant : "Le matricule est obligatoire".
+> L'employé {id} n'a pas été trouvé
+
+Si la méthode est appelée sans id, retourner le message suivant :
+
+> Le matricule est obligatoire
 
 ### Exo bonus
 
