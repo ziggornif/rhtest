@@ -7,7 +7,7 @@ Le développement piloté par les tests est une méthode itérative de développ
 Les étapes sont les suivantes :
 
 - Écriture du test
-- Le rest échoue (🔴)
+- Le test échoue (🔴)
 - Écriture de la fonctionnalité
 - Le test passe (🟢)
 - Refactorisation du code
