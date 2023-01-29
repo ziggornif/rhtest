@@ -14,4 +14,4 @@ Pour illustrer les phases thériques vus en cours, les manipulations se font au 
 2. Construire son premier test unitaire
 3. [Construire son test d'Api](cours/TP-TestAPIAutomatise/Readme.md)
 4. [Construire son premier test fonctionnel automatisé](cours/TP-TestFonctionnelAutomatise/Readme.md)
-5. Construire un monitoring
+5. [Superviser son application avec une stack de monitoring](cours/TP-MonitoringStack/README.md)
