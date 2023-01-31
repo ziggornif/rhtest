@@ -1,20 +1,22 @@
 <template>
-  <h3 v-if="!creation">Mise à jour de l'employé {{ employee.id }}</h3>
-  <form @submit.prevent="submit">
-    <label>Matricule: <input v-model="employee.id" placeholder="ID" :disabled="!creation"></label>
-    <div class="grid">
-      <label>Nom: <input v-model="employee.name" placeholder="Nom"></label>
-      <label>Prénom: <input v-model="employee.lastname" placeholder="Prénom"></label>
-    </div>
-    <div class="grid">
-      <label>Niveau: <input v-model="employee.level" placeholder="Niveau"></label>
-      <label>Salaire: <input v-model="employee.salary" placeholder="Salaire"></label>
-    </div>
-    <div class="grid">
-      <button v-if="creation">Créer</button>
-      <button v-if="!creation">Modifier</button>
-    </div>
-  </form>
+  <span>
+    <h3 v-if="!creation">Mise à jour de l'employé {{ employee.id }}</h3>
+    <form @submit.prevent="submit">
+      <label>Matricule: <input v-model="employee.id" placeholder="ID" :disabled="!creation" :id="creation ? 'creerEmpId' : 'modifierEmpId'"></label>
+      <div class="grid">
+        <label>Nom: <input v-model="employee.name" placeholder="Nom" :id="creation ? 'creerEmpName' : 'modifierEmpName'"></label>
+        <label>Prénom: <input v-model="employee.lastname" placeholder="Prénom" :id="creation ? 'creerEmpLastname' : 'modifierEmpLastname'"></label>
+      </div>
+      <div class="grid">
+        <label>Niveau: <input v-model="employee.level" placeholder="Niveau" :id="creation ? 'creerEmpLevel' : 'modifierEmpLevel'"></label>
+        <label>Salaire: <input v-model="employee.salary" placeholder="Salaire" :id="creation ? 'creerEmpSalary' : 'modifierEmpSalary'"></label>
+      </div>
+      <div class="grid">
+        <button v-if="creation" id="creerEmp">Créer</button>
+        <button v-if="!creation" id="modifierEmp">Modifier</button>
+      </div>
+    </form>
+  </span>
 </template>
 
 <script setup>

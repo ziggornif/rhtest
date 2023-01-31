@@ -4,8 +4,12 @@
       <div>
         <h1>RhTest</h1>
 
-        <div class="error" v-if="errorMessage">
-          <p>Une erreur est survenue : {{ errorMessage }}</p>
+        <div class="error" id="errorMessage" v-if="errorMessage">
+          Une erreur est survenue : {{ errorMessage }}
+        </div>
+
+        <div class="success" id="successMessage" v-if="successMessage">
+          {{ successMessage }}
         </div>
 
         <h2>Création d'un salarié :</h2>
@@ -29,15 +33,15 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="employee in employees" :key="employee.id">
-              <td>{{ employee.id }}</td>
-              <td>{{ employee.name }}</td>
-              <td>{{ employee.lastname }}</td>
-              <td>{{ employee.salary }}</td>
-              <td>{{ employee.level }}</td>
+            <tr v-for="employee, index in employees" :key="employee.id">
+              <td :id="'empId_' + index">{{ employee.id }}</td>
+              <td :id="'empName_' + index">{{ employee.name }}</td>
+              <td :id="'empLasttname_' + index">{{ employee.lastname }}</td>
+              <td :id="'empSalary_' + index">{{ employee.salary }}</td>
+              <td :id="'empLevel_' + index">{{ employee.level }}</td>
               <td>
-                <button class="outline small-btn" @click="toggleUpdate(employee)">📝</button>
-                <button class="outline small-btn" @click="deleteEmployee(employee)">🗑️</button>
+                <button class="outline small-btn" @click="toggleUpdate(employee)" :id="'empUpdate_' + index">📝</button>
+                <button class="outline small-btn" @click="deleteEmployee(employee)" :id="'empDelete_' + index">🗑️</button>
               </td>
             </tr>
           </tbody>
@@ -48,8 +52,8 @@
 
         <h2>Administration</h2>
         <div class="admin">
-          <button class="small-btn" @click="deleteAll()">🗑️ Supprimer les données</button>
-          <button class="small-btn" @click="resetData()">↩ Restaurer les données de test</button>
+          <button class="small-btn" @click="deleteAll()" id="deleteAll">🗑️ Supprimer les données</button>
+          <button class="small-btn" @click="resetData()" id="resetData">↩ Restaurer les données de test</button>
         </div>
       </div>
 
@@ -87,7 +91,7 @@ export default {
     },
     async createdEvent(employee) {
       try {
-        await create(employee);
+        this.successMessage = await create(employee);
       } catch (error) {
         this.errorMessage = error.response.data;
       } finally {
@@ -105,7 +109,7 @@ export default {
     },
     async updateEmployee(employee) {
       try {
-        await update(employee);
+        this.successMessage = await update(employee);
       } catch (error) {
         this.errorMessage = error.response.data;
       } finally {
@@ -116,7 +120,7 @@ export default {
     },
     async deleteEmployee(employee) {
       try {
-        await deleteOne(employee);
+        this.successMessage = await deleteOne(employee);
       } catch (error) {
         this.errorMessage = error.response.data;
       } finally {
@@ -124,16 +128,17 @@ export default {
         return this.fetchEmployees();
       }
     },
-    async deleteAll(employee) {
+    async deleteAll() {
       await deleteAll()
       return this.fetchEmployees();
     },
     async resetData() {
-      await resetData();
+      this.successMessage = await resetData();
       return this.fetchEmployees();
     },
     closeError() {
       this.errorMessage = null;
+      this.successMessage = null;
     }
   },
 }
@@ -152,7 +157,22 @@ export default {
   margin: 0.25rem;
 }
 
-.error>p {
-  color: #e53935;
+.error {
+  color: #D8000C;
+  background-color: #FFBABA;
+  border-radius: 10px;
+  height: 4rem;
+  line-height: 2rem;
+  padding: 1rem; 
 }
+
+.success {
+  color: #4F8A10;
+  background-color: #DFF2BF;
+  border-radius: 10px;
+  height: 4rem;
+  line-height: 2rem;
+  padding: 1rem; 
+}
+
 </style>
