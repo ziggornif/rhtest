@@ -25,7 +25,7 @@ permettent de rejouer facilement une suite de tests sur plusieurs environnements
 
  1. Démarrer l'application RhTest
  2. Disposer du référentiel d'exigences
- 3. Utiliser la version en lign de de Postman Open Source disponible [ici](https://www.postman.com/)
+ 3. Utiliser la version en ligne de de Postman Open Source disponible [ici](https://www.postman.com/)
  ![Postman](img/00.png)
 
 ## Travail à réaliser
