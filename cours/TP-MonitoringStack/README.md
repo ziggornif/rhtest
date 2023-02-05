@@ -32,7 +32,7 @@ search_counter{ip="192.168.0.20", response="200", route="/api/rechercher?mode=al
 search_counter{ip="192.168.0.20", response="400", route="/api/rechercher", type="GET"} 48
 ```
 
-Tout cela peut parraitre assez abstrait, le mieux pour comprendre reste de passer à une petite démonstration 😉
+Tout cela peut paraître assez abstrait, le mieux pour comprendre reste de passer à une petite démonstration 😉
 
 ## Démonstration
 Dans cette démonstration, nous allons initier notre tableau de bord Grafana, et y ajouter un composant pour **visualiser le nombre d'appels HTTP par minute, pour chaque route**. 
