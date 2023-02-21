@@ -38,7 +38,7 @@ Tout cela peut paraître assez abstrait, le mieux pour comprendre reste de passe
 Dans cette démonstration, nous allons initier notre tableau de bord Grafana, et y ajouter un composant pour **visualiser le nombre d'appels HTTP par minute, pour chaque route**. 
 * Ouvrez votre espace de travail GitPod
 
-    [![Gitpod](https://camo.githubusercontent.com/76e60919474807718793857d8eb615e7a50b18b04050577e5a35c19421f260a3/68747470733a2f2f676974706f642e696f2f627574746f6e2f6f70656e2d696e2d676974706f642e737667)](https://gitpod.io#https://github.com/labarretony/rhtest)
+    [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/fmarques56/rhtest)
 
 * Une fois le compose-file lancé automatiquement, accédez à votre interface Grafana :
     * Icône Docker -> Clic-droit sur le conteneur grafana -> Open in Browser
@@ -62,7 +62,7 @@ Dans cette démonstration, nous allons initier notre tableau de bord Grafana, et
 * Rafraichissez votre composant :
     <br><img src="img/refresh.png" alt="drawing" width="50%"/>
 
-* A ce stade, on observe au moins quatre courbes : ce sont les appels faits sur l'api par le script noise.sh qui s'exécute dans un conteneur, allez voir sa définition ici : https://github.com/labarretony/rhtest/blob/master/apps/monitoring/noise/noise.sh. Il fait simplement appel à quelques routes de notre API toutes les secondes pour générer du bruit et provoquer un incrément de notre métrique `search_counter`. Les courbes sont certainement compactées sur la droite, vous pouvez **réduire la plage temporelle que l'on souhaite visualiser à 15 minutes** :
+* A ce stade, on observe au moins quatre courbes : ce sont les appels faits sur l'api par le script noise.sh qui s'exécute dans un conteneur, allez voir sa définition ici : https://github.com/fmarques56/rhtest/blob/master/apps/monitoring/noise/noise.sh. Il fait simplement appel à quelques routes de notre API toutes les secondes pour générer du bruit et provoquer un incrément de notre métrique `search_counter`. Les courbes sont certainement compactées sur la droite, vous pouvez **réduire la plage temporelle que l'on souhaite visualiser à 15 minutes** :
     <br><img src="img/time_range.png" alt="drawing" width="50%"/>
 
 * Si vous regardez la légende en bas de votre graphique, vous retrouvez les labels associés à vos séries temporelles. Rappelez-vous, nous avions dit plus haut qu'une combinaison de labels = une série temporelle (= une courbe). On a donc un graphique qui affiche le nombre d'appels HTTP pour chaque combinaison de labels.

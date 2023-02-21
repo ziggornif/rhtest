@@ -2,7 +2,8 @@
 
 Les TP concernant le test nécessitent l'application mise sous test appelée RhTest disponible dans les documents ci dessous. Pour faciliter les travaux en séance, l'application est disponible via Gitpod.
 
-[![Gitpod](https://camo.githubusercontent.com/76e60919474807718793857d8eb615e7a50b18b04050577e5a35c19421f260a3/68747470733a2f2f676974706f642e696f2f627574746f6e2f6f70656e2d696e2d676974706f642e737667)](https://gitpod.io#https://github.com/labarretony/rhtest)
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/fmarques56/rhtest)
+
 
 ![Copie d'écran de l'application RhTest](cours/img/screenshot.png)
 
