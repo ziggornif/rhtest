@@ -14,7 +14,7 @@
 
         <h2>Création d'un salarié :</h2>
         <Employee @created="createdEvent" />
-        <h2>Liste des salariés :</h2>
+        <h2>Liste des salariés ({{ employees.length || 0  }}) :</h2>
         <form>
           <div class="grid">
             <input v-model="searchTerm" type="search" id="search" name="search" placeholder="Rechercher"
