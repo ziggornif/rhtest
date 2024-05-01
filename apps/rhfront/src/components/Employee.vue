@@ -11,7 +11,7 @@
         <label>Niveau: <input v-model="employee.level" placeholder="Niveau" :id="creation ? 'creerEmpLevel' : 'modifierEmpLevel'"></label>
         <label>Salaire: <input v-model="employee.salary" placeholder="Salaire" :id="creation ? 'creerEmpSalary' : 'modifierEmpSalary'"></label>
       </div>
-      <div class="grid">
+      <div class="submit">
         <button v-if="creation" id="creerEmp">Créer</button>
         <button v-if="!creation" id="modifierEmp">Modifier</button>
       </div>
@@ -73,3 +73,10 @@ const submit = () => {
 }
 
 </script>
+
+<style>
+.submit {
+    display: flex;
+    justify-content: flex-end;
+}
+</style>

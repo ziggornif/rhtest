@@ -1,63 +1,68 @@
 <template>
+  <header class="container">
+    <h1><img id="logo" src="/public/logo.png" alt="application logo"> RhTest</h1>
+  </header>
   <main class="container">
-    <div class="grid">
-      <div>
-        <h1>RhTest</h1>
-
-        <div class="error" id="errorMessage" v-if="errorMessage">
-          Une erreur est survenue : {{ errorMessage }}
-        </div>
-
-        <div class="success" id="successMessage" v-if="successMessage">
-          {{ successMessage }}
-        </div>
-
-        <h2>Création d'un salarié :</h2>
-        <Employee @created="createdEvent" />
-        <h2>Liste des salariés ({{ employees.length || 0  }}) :</h2>
-        <form>
-          <div class="grid">
-            <input v-model="searchTerm" type="search" id="search" name="search" placeholder="Rechercher"
-              @keyup="search(searchTerm)">
-          </div>
-        </form>
-        <table>
-          <thead>
-            <tr>
-              <th>Matricule</th>
-              <th>Nom</th>
-              <th>Prénom</th>
-              <th>Salaire</th>
-              <th>Niveau</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="employee, index in employees" :key="employee.id">
-              <td :id="'empId_' + index">{{ employee.id }}</td>
-              <td :id="'empName_' + index">{{ employee.name }}</td>
-              <td :id="'empLasttname_' + index">{{ employee.lastname }}</td>
-              <td :id="'empSalary_' + index">{{ employee.salary }}</td>
-              <td :id="'empLevel_' + index">{{ employee.level }}</td>
-              <td>
-                <button class="outline small-btn" @click="toggleUpdate(employee)" :id="'empUpdate_' + index">📝</button>
-                <button class="outline small-btn" @click="deleteEmployee(employee)" :id="'empDelete_' + index">🗑️</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-
-        <Employee v-if="updateMode" :id="employee.id" :name="employee.name" :lastname="employee.lastname"
-          :salary="employee.salary" :level="employee.level" @updated="updateEmployee" />
-
-        <h2>Administration</h2>
-        <div class="admin">
-          <button class="small-btn" @click="deleteAll()" id="deleteAll">🗑️ Supprimer les données</button>
-          <button class="small-btn" @click="resetData()" id="resetData">↩ Restaurer les données de test</button>
-        </div>
-      </div>
-
+    <div class="error" id="errorMessage" v-if="errorMessage">
+        Une erreur est survenue : {{ errorMessage }}
     </div>
+
+    <div class="success" id="successMessage" v-if="successMessage">
+      {{ successMessage }}
+    </div>
+
+    <section id="create-employee">
+      <h2>Création d'un salarié :</h2>
+      <Employee @created="createdEvent" />
+    </section>
+
+    <section id="list-employees">
+      <h2>Liste des salariés ({{ employees.length || 0  }}) :</h2>
+      <form>
+        <div class="grid">
+          <input v-model="searchTerm" type="search" id="search" name="search" placeholder="Rechercher"
+            @keyup="search(searchTerm)">
+        </div>
+      </form>
+      <table>
+        <thead>
+          <tr>
+            <th>Matricule</th>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Salaire</th>
+            <th>Niveau</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="employee, index in employees" :key="employee.id">
+            <td :id="'empId_' + index">{{ employee.id }}</td>
+            <td :id="'empName_' + index">{{ employee.name }}</td>
+            <td :id="'empLasttname_' + index">{{ employee.lastname }}</td>
+            <td :id="'empSalary_' + index">{{ employee.salary }}</td>
+            <td :id="'empLevel_' + index">{{ employee.level }}</td>
+            <td>
+              <button class="outline small-btn" @click="toggleUpdate(employee)" :id="'empUpdate_' + index">📝</button>
+              <button class="outline small-btn" @click="deleteEmployee(employee)" :id="'empDelete_' + index">🗑️</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="update-employee">
+      <Employee v-if="updateMode" :id="employee.id" :name="employee.name" :lastname="employee.lastname"
+          :salary="employee.salary" :level="employee.level" @updated="updateEmployee" />
+    </section>
+
+    <section id="admin">
+      <h2>Administration</h2>
+      <div class="admin">
+        <button class="small-btn" @click="deleteAll()" id="deleteAll">🗑️ Supprimer les données</button>
+        <button class="small-btn" @click="resetData()" id="resetData">↩ Restaurer les données de test</button>
+      </div>
+    </section>        
   </main>
 </template>
 
@@ -173,6 +178,10 @@ export default {
   height: 4rem;
   line-height: 2rem;
   padding: 1rem; 
+}
+
+#logo{
+  width: 100px;
 }
 
 </style>
