@@ -56,13 +56,21 @@ Si le paramètre envoyé est vide, retourner le message suivant :
 
 > Le nom est obligatoire
 
+**Tips : vous pouvez utiliser la méthode `assert` de Node.JS pour ce genre de contrôle.**
+
+```ts
+function foo(arg: string) {
+  assert(arg, 'arg is missing'); // Throw une exception si arg est absent
+}
+```
+
 ### Exo 2 : Ajouter un contrôle sur le nom et le prénom
 
 La classe `EmployeeService` ne contrôle pas que les champs nom et prénom ne contiennent pas de caractères numériques.
 
 Ajouter ce contrôle sur la création d'employés (méthode `add`).
 
-Exemple de méthode pour vérifier la présence de caractères numériques dans une chaîne :
+**Tips : exemple de méthode pour vérifier la présence de caractères numériques dans une chaîne :**
 
 ```ts
 function containsNumbers(str: string) {
