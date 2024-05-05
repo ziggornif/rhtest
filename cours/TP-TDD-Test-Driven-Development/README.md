@@ -116,4 +116,4 @@ Une fois l'API en place :
 
 ## Ressources
 
-- Cours : https://drouian-m.github.io/tdd-workshop
+- [Slides cours](https://ziggornif.github.io/tdd-workshop/)
