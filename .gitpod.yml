@@ -12,4 +12,6 @@ ports:
 vscode:
   extensions:
     - "ms-azuretools.vscode-docker"
-    - ZixuanChen.vitest-explorer
+    - vitest.explorer
+    - biomejs.biome
+    - Vue.volar
