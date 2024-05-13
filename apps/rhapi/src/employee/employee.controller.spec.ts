@@ -66,7 +66,7 @@ describe("Server", () => {
 
 	it("should have a 404 error on modifier endpoint call and employee doesn't exists", async () => {
 		const res = await request.post(
-			"/api/modifier?id=notexists&name=doe&lastname=john&salary=10&level=4",
+			"/api/modifier/notexists?name=doe&lastname=john&salary=10&level=4",
 		);
 		expect(res.status).toBe(404);
 		expect(res.text).toEqual("Le matricule n'a pas été trouvé");
@@ -74,7 +74,7 @@ describe("Server", () => {
 
 	it("should have a 400 error on modifier endpoint call and employee not valid", async () => {
 		const res = await request.post(
-			"/api/modifier?id=SAL1&name=doe&lastname=john&salary=-10&level=4",
+			"/api/modifier/SAL1?name=doe&lastname=john&salary=-10&level=4",
 		);
 		expect(res.status).toBe(400);
 		expect(res.text).toEqual("Le salaire doit être un nombre positif");
@@ -82,7 +82,7 @@ describe("Server", () => {
 
 	it("should update employee on modifier endpoint call", async () => {
 		const res = await request.post(
-			"/api/modifier?id=SAL1&name=DURAND&lastname=Pierre&salary=333&level=2",
+			"/api/modifier/SAL1?name=DURAND&lastname=Pierre&salary=333&level=2",
 		);
 		expect(res.status).toBe(200);
 	});

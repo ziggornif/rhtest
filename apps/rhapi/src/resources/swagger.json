@@ -126,7 +126,7 @@
            }
         }
      },
-     "/api/modifier":{
+     "/api/modifier/{id}":{
         "post":{
            "summary":"Modifier un employé",
            "description":"Modifier les informations d'un employé existant",
@@ -134,7 +134,7 @@
            "parameters":[
               {
                  "name":"id",
-                 "in":"query",
+                 "in":"path",
                  "description":"L'ID de l'employé à modifier",
                  "required":true,
                  "schema":{

@@ -86,10 +86,10 @@ class EmployeeController {
 			}
 		});
 
-		this.#router.post("/api/modifier", async (req: Request, res: Response) => {
+		this.#router.post("/api/modifier/:id", async (req: Request, res: Response) => {
 			try {
 				await this.#employeeService.update(
-					req.query.id as string,
+					req.params.id as string,
 					req.query.name as string,
 					req.query.lastname as string,
 					req.query.salary as string,
