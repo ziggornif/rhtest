@@ -123,9 +123,6 @@ Dans la suite de test "Modifier", il va falloir
 - _Cas de test 2 :_ Cas en erreur  
   Ajouter un employé avec des critères valides puis modifier un critère avec une donnée en erreur (salaire néfgatif)  
   Et contrôler avec 2 assertions
-- _Cas de test 3 :_ Cas en erreur (duplication)  
-  Ajouter deux employés puis modifer le second pour correspondre au premier  
-  Et contrôler avec 2 assertions
 
 _ex 03 :_ Rechercher  
 Dans la suite de test "Rechercher", il va falloir
