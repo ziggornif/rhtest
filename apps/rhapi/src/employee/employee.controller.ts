@@ -1,5 +1,5 @@
+import type { Request, Response, Router } from "express";
 import router from "express-promise-router";
-import type { Router, Request, Response } from "express";
 import { Counter } from "prom-client";
 
 import { EmployeeService } from "./employee.service";
@@ -149,11 +149,11 @@ class EmployeeController {
 			},
 		);
 
-		this.#router.delete(
+		this.#router.post(
 			"/api/datatest",
 			async (req: Request, res: Response) => {
 				await this.#employeeService.reset();
-				res.send("Le fichier de salarié a été reinitialisé");
+				res.status(201).send("Le fichier de salarié a été reinitialisé");
 			},
 		);
 

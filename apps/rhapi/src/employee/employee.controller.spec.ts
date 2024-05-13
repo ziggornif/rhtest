@@ -1,5 +1,5 @@
-import { describe, it, expect, beforeAll } from "vitest";
 import supertest from "supertest";
+import { beforeAll, describe, expect, it } from "vitest";
 
 import { Server } from "../server";
 
@@ -106,8 +106,8 @@ describe("Server", () => {
 		const all = await request.get("/api/rechercher?mode=all");
 		expect(all.body).toHaveLength(0);
 
-		const reset = await request.delete("/api/datatest");
-		expect(reset.status).toBe(200);
+		const reset = await request.post("/api/datatest");
+		expect(reset.status).toBe(201);
 
 		const all2 = await request.get("/api/rechercher?mode=all");
 		expect(all2.body).toHaveLength(2);

@@ -213,12 +213,12 @@
          }
       },
       "/api/datatest":{
-         "delete":{
+         "post":{
             "summary":"Admin - Restaurer les données de test",
             "description":"Restaurer les données de test",
             "parameters":[],
             "responses":{
-               "200":{
+               "201":{
                   "description":"OK"
                },
                "400":{
