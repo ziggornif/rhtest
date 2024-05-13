@@ -5,11 +5,22 @@
      "version":"1.0.0",
      "description": "Application pour apprentissage des outils et méthodes de test.\n\nDans les exemples ci dessous, l'application répond sur http://{server}:{port}"
   },
+  "tags": [
+   {
+      "name": "API - Métier",
+      "description": "Expose les routes métier"
+    },
+   {
+      "name": "API - Admin",
+      "description": "Expose les routes d'administration"
+    }
+  ],
   "paths":{
      "/api/rechercher":{
         "get":{
            "summary":"Rechercher des employés",
            "description":"Rechercher des employés en fonction de différents critères",
+           "tags": ["API - Métier"],
            "parameters":[
               {
                  "name":"mode",
@@ -54,6 +65,7 @@
         "post":{
            "summary":"Ajouter un employé",
            "description":"Ajouter un employé à la liste des employés",
+           "tags": ["API - Métier"],
            "parameters":[
               {
                  "name":"id",
@@ -118,6 +130,7 @@
         "post":{
            "summary":"Modifier un employé",
            "description":"Modifier les informations d'un employé existant",
+           "tags": ["API - Métier"],
            "parameters":[
               {
                  "name":"id",
@@ -185,6 +198,7 @@
         "delete":{
            "summary":"Supprimer un employé",
            "description":"Supprimer un employé existant de la liste des employés",
+           "tags": ["API - Métier"],
            "parameters":[
               {
                  "name":"id",
@@ -210,6 +224,7 @@
          "delete":{
             "summary":"Admin - Supprimer les données",
             "description":"Supprimer les données",
+            "tags": ["API - Admin"],
             "parameters":[],
             "responses":{
                "200":{
@@ -225,6 +240,7 @@
          "post":{
             "summary":"Admin - Restaurer les données de test",
             "description":"Restaurer les données de test",
+            "tags": ["API - Admin"],
             "parameters":[],
             "responses":{
                "201":{
