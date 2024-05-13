@@ -105,6 +105,9 @@
               "201":{
                  "description":"L'employé a été ajouté avec succès"
               },
+              "400":{
+                 "description":"L'employé n'a pas été ajouté"
+              },
               "409":{
                  "description":"L'employé existe déjà"
               }
@@ -166,6 +169,12 @@
               "200":{
                  "description":"L'employé a été modifié avec succès"
               },
+              "400":{
+                 "description":"L'employé n'a pas été modifié"
+              },
+              "404":{
+               "description":"L'employé n'existe pas"
+            },
               "409":{
                  "description":"Une erreur est survenue lors de la modification de l'employé"
               }

@@ -32,21 +32,21 @@ describe("Server", () => {
 		const res = await request.post(
 			"/api/ajouter?id=test&name=doe&lastname=john&salary=-10&level=1",
 		);
-		expect(res.status).toBe(409);
+		expect(res.status).toBe(400);
 	});
 
 	it("should have a 409 error on ajouter endpoint call with level > 10", async () => {
 		const res = await request.post(
 			"/api/ajouter?id=test&name=doe&lastname=john&salary=10&level=11",
 		);
-		expect(res.status).toBe(409);
+		expect(res.status).toBe(400);
 	});
 
 	it("should have a 409 error on ajouter endpoint call without id", async () => {
 		const res = await request.post(
 			"/api/ajouter?name=doe&lastname=john&salary=10&level=4",
 		);
-		expect(res.status).toBe(409);
+		expect(res.status).toBe(400);
 	});
 
 	it("should have a 409 error on ajouter endpoint call and employee already exists", async () => {
@@ -64,12 +64,20 @@ describe("Server", () => {
 		expect(res.status).toBe(201);
 	});
 
-	it("should have a 409 error on modifier endpoint call and employee doesn't exists", async () => {
+	it("should have a 404 error on modifier endpoint call and employee doesn't exists", async () => {
 		const res = await request.post(
 			"/api/modifier?id=notexists&name=doe&lastname=john&salary=10&level=4",
 		);
-		expect(res.status).toBe(409);
+		expect(res.status).toBe(404);
 		expect(res.text).toEqual("Le matricule n'a pas été trouvé");
+	});
+
+	it("should have a 400 error on modifier endpoint call and employee not valid", async () => {
+		const res = await request.post(
+			"/api/modifier?id=SAL1&name=doe&lastname=john&salary=-10&level=4",
+		);
+		expect(res.status).toBe(400);
+		expect(res.text).toEqual("Le salaire doit être un nombre positif");
 	});
 
 	it("should update employee on modifier endpoint call", async () => {

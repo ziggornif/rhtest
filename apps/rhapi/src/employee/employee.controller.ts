@@ -74,13 +74,15 @@ class EmployeeController {
 				res.status(201).send("Le salarié a bien été ajouté");
 			} catch (error) {
 				console.log((error as Error).message);
+				let response = 400;
+				if ((error as Error).message === 'Le matricule existe déjà') response = 409;
 				this.#searchCounter.inc({
 					type: "POST",
 					route: "/api/ajouter",
-					response: 409,
+					response,
 					ip: req.socket.remoteAddress,
 				});
-				return res.status(409).send((error as Error).message);
+				return res.status(response).send((error as Error).message);
 			}
 		});
 
@@ -104,13 +106,16 @@ class EmployeeController {
 				res.status(200).send("Le salarié a bien été modifié");
 			} catch (error) {
 				console.log((error as Error).message);
+				let response = 400;
+				if ((error as Error).message === 'Le matricule existe déjà') response = 409;
+				if ((error as Error).message === `Le matricule n'a pas été trouvé`) response = 404;
 				this.#searchCounter.inc({
 					type: "POST",
 					route: "/api/modifier",
-					response: 409,
+					response,
 					ip: req.socket.remoteAddress,
 				});
-				return res.status(409).send((error as Error).message);
+				return res.status(response).send((error as Error).message);
 			}
 		});
 
