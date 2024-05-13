@@ -74,6 +74,9 @@ Assert Status
 
 Pour chaque point d'entré de l'application (EndPoint) réaliser une suite de test avec un point de contrôle (assertion) sur le status code et un sur la réponse obtenue.
 
+Les suites de tests doivent être autonome, et rejouable plusieurs fois.
+![Suite de test](img/09.png)
+
 ## Travail à réaliser
 
 _ex 01 :_ Créer  
@@ -82,6 +85,25 @@ Dans la suite de test "Créer", il va falloir
 - _Cas de test 1 :_ Cas nominal (fonctionnel)  
   Ajouter un employé  
   Et contrôler avec 2 assertions
+  <details>
+  <summary>Réponse</summary>
+  METHOD : POST
+
+  URL : {{baseURL}}/api/ajouter?id=test001&name=martin&lastname=pierre&salary=15000&level=1
+
+  TEST :  
+  <code>
+  pm.test("Status code is 201", function () {  
+   pm.response.to.have.status(201);  
+  });
+
+  pm.test("Body matches string", function () {
+  pm.expect(pm.response.text()).to.include("Le salarié a bien été ajouté");  
+  });
+  </code>
+
+  </details>
+
 - _Cas de test 2 :_ Cas en erreur  
   Ajouter un employé avec des critères invalides  
   Et contrôler avec 2 assertions
