@@ -17,7 +17,7 @@
     </section>
 
     <section id="list-employees">
-      <h2>Liste des salariés ({{ employees.length || 0  }}) :</h2>
+      <h2>Liste des salariés (<span id="cpt-employees">{{ employees.length || 0  }}</span>) :</h2>
       <form>
         <div class="grid">
           <input v-model="searchTerm" type="search" id="search" name="search" placeholder="Rechercher"
@@ -68,7 +68,7 @@
 
 <script>
 import Employee from './components/Employee.vue';
-import { fetch, search, create, update, deleteOne, deleteAll, resetData, emptyEmployee } from './services/employee.service';
+import { create, deleteAll, deleteOne, emptyEmployee, fetch, resetData, search, update } from './services/employee.service';
 
 export default {
   data() {
