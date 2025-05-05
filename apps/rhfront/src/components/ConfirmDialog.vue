@@ -3,8 +3,8 @@
       <div class="modal">
         <p>{{ message }}</p>
         <div class="modal-actions">
-          <button @click="confirmAction" class="confirm-btn">Confirmer</button>
-          <button @click="cancelAction" class="cancel-btn">Annuler</button>
+          <button @click="confirmAction" class="confirm-btn" id="confirmAction">Confirmer</button>
+          <button @click="cancelAction" class="cancel-btn" id="cancelAction">Annuler</button>
         </div>
       </div>
     </div>

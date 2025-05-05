@@ -79,10 +79,10 @@
       <div class="modal">
         <h3>Action d'administration</h3>
         <p>{{ adminActionMessage }}</p>
-        <input v-model="adminToken" type="password" placeholder="Token d'administration">
+        <input v-model="adminToken" type="password" placeholder="Token d'administration" id="adminToken">
         <div class="modal-actions">
-          <button class="small-btn confirm-btn" @click="confirmAdminAction">✅ Confirmer</button>
-          <button class="small-btn cancel-btn" @click="closeAdminModal">❌ Annuler</button>
+          <button class="small-btn confirm-btn" @click="confirmAdminAction" id="confirmAdminAction">✅ Confirmer</button>
+          <button class="small-btn cancel-btn" @click="closeAdminModal" id="closeAdminModal">❌ Annuler</button>
         </div>
       </div>
     </div>
