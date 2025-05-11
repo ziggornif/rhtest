@@ -1,236 +1,323 @@
 {
-  "openapi":"3.0.0",
-  "info":{
-     "title":"API RH",
-     "version":"1.0.0",
-     "description": "Application pour apprentissage des outils et méthodes de test.\n\nDans les exemples ci dessous, l'application répond sur http://{server}:{port}"
-  },
-  "paths":{
-     "/api/rechercher":{
-        "get":{
-           "summary":"Rechercher des employés",
-           "description":"Rechercher des employés en fonction de différents critères",
-           "parameters":[
-              {
-                 "name":"mode",
-                 "in":"query",
-                 "description":"Le mode de recherche (tous les employés ou un employé spécifique)",
-                 "required":true,
-                 "schema":{
-                    "type":"string"
-                 }
-              },
-              {
-                 "name":"name",
-                 "in":"query",
-                 "description":"Le nom de l'employé à rechercher",
-                 "required":false,
-                 "schema":{
-                    "type":"string"
-                 }
-              }
-           ],
-           "responses":{
-              "200":{
-                 "description":"Liste des employés trouvés",
-                 "content":{
-                    "application/json":{
-                       "schema":{
-                          "type":"array",
-                          "items":{
-                             "$ref":"#/components/schemas/Employee"
-                          }
-                       }
-                    }
-                 }
-              },
-              "400":{
-                 "description":"Demande mal formée"
-              }
-           }
-        }
+   "openapi":"3.0.0",
+   "info":{
+      "title":"API RH",
+      "version":"1.0.0",
+      "description": "Application pour apprentissage des outils et méthodes de test.\n\nDans les exemples ci dessous, l'application répond sur http://{server}:{port}"
+   },
+   "tags": [
+    {
+       "name": "API - Métier",
+       "description": "Expose les routes métier"
      },
-     "/api/ajouter":{
-        "post":{
-           "summary":"Ajouter un employé",
-           "description":"Ajouter un employé à la liste des employés",
-           "parameters":[
-              {
-                 "name":"id",
-                 "in":"query",
-                 "description":"L'ID de l'employé à ajouter",
-                 "required":true,
-                 "schema":{
-                    "type":"string"
-                 }
-              },
-              {
-                 "name":"name",
-                 "in":"query",
-                 "description":"Le nom de l'employé à ajouter",
-                 "required":true,
-                 "schema":{
-                    "type":"string"
-                 }
-              },
-              {
-                 "name":"lastname",
-                 "in":"query",
-                 "description":"Le nom de famille de l'employé à ajouter",
-                 "required":true,
-                 "schema":{
-                    "type":"string"
-                 }
-              },
-              {
-                 "name":"salary",
-                 "in":"query",
-                 "description":"Le salaire de l'employé à ajouter",
-                 "required":true,
-                 "schema":{
-                    "type":"string"
-                 }
-              },
-              {
-                 "name":"level",
-                 "in":"query",
-                 "description":"Le niveau de l'employé à ajouter",
-                 "required":true,
-                 "schema":{
-                    "type":"string"
-                 }
-              }
-           ],
-           "responses":{
-              "201":{
-                 "description":"L'employé a été ajouté avec succès"
-              },
-              "409":{
-                 "description":"L'employé existe déjà"
-              }
-           }
-        }
-     },
-     "/api/modifier":{
-        "post":{
-           "summary":"Modifier un employé",
-           "description":"Modifier les informations d'un employé existant",
-           "parameters":[
-              {
-                 "name":"id",
-                 "in":"query",
-                 "description":"L'ID de l'employé à modifier",
-                 "required":true,
-                 "schema":{
-                    "type":"string"
-                 }
-              },
-              {
-                 "name":"name",
-                 "in":"query",
-                 "description":"Le nouveau nom de l'employé",
-                 "required":true,
-                 "schema":{
-                    "type":"string"
-                 }
-              },
-              {
-                 "name":"lastname",
-                 "in":"query",
-                 "description":"Le nouveau nom de famille de l'employé",
-                 "required":true,
-                 "schema":{
-                    "type":"string"
-                 }
-              },
-              {
-                 "name":"salary",
-                 "in":"query",
-                 "description":"Le nouveau salaire de l'employé",
-                 "required":true,
-                 "schema":{
-                    "type":"string"
-                 }
-              },
-              {
-                 "name":"level",
-                 "in":"query",
-                 "description":"Le nouveau niveau de l'employé",
-                 "required":true,
-                 "schema":{
-                    "type":"string"
-                 }
-              }
-           ],
-           "responses":{
-              "200":{
-                 "description":"L'employé a été modifié avec succès"
-              },
-              "409":{
-                 "description":"Une erreur est survenue lors de la modification de l'employé"
-              }
-           }
-        }
-     },
-     "/api/supprimer":{
-        "delete":{
-           "summary":"Supprimer un employé",
-           "description":"Supprimer un employé existant de la liste des employés",
-           "parameters":[
-              {
-                 "name":"id",
-                 "in":"query",
-                 "description":"L'ID de l'employé à supprimer",
-                 "required":true,
-                 "schema":{
-                    "type":"string"
-                 }
-              }
-           ],
-           "responses":{
-              "200":{
-                 "description":"L'employé a été supprimé avec succès"
-              },
-              "400":{
-                 "description":"Une erreur est survenue lors de la suppression de l'employé"
-              }
-           }
-        }
+    {
+       "name": "API - Admin",
+       "description": "Expose les routes d'administration"
      }
-  },
-  "components":{
-     "schemas":{
-        "Employee":{
-           "type":"object",
-           "properties":{
-              "id":{
-                 "type":"string"
-              },
-              "name":{
-                 "type":"string"
-              },
-              "lastname":{
-                 "type":"string"
-              },
-              "salary":{
-                 "type":"string"
-              },
-              "level":{
-                 "type":"string"
-              },
-              "time":{
-                 "type":"number"
-              }
-           },
-           "required":[
-              "id",
-              "name",
-              "lastname",
-              "salary",
-              "level",
-              "time"
-           ]
-        }
-     }
-  }
-}
+   ],
+   "paths":{
+      "/api/rechercher":{
+         "get":{
+            "summary":"Rechercher des employés",
+            "description":"Rechercher des employés en fonction de différents critères",
+            "tags": ["API - Métier"],
+            "parameters":[
+               {
+                  "name":"mode",
+                  "in":"query",
+                  "description":"Le mode de recherche (tous les employés ou un employé spécifique)",
+                  "required":true,
+                  "schema":{
+                     "type":"string"
+                  }
+               },
+               {
+                  "name":"name",
+                  "in":"query",
+                  "description":"Le nom de l'employé à rechercher",
+                  "required":false,
+                  "schema":{
+                     "type":"string"
+                  }
+               }
+            ],
+            "responses":{
+               "200":{
+                  "description":"Liste des employés trouvés",
+                  "content":{
+                     "application/json":{
+                        "schema":{
+                           "type":"array",
+                           "items":{
+                              "$ref":"#/components/schemas/Employee"
+                           }
+                        }
+                     }
+                  }
+               },
+               "400":{
+                  "description":"Demande mal formée"
+               }
+            }
+         }
+      },
+      "/api/ajouter":{
+         "post":{
+            "summary":"Ajouter un employé",
+            "description":"Ajouter un employé à la liste des employés",
+            "tags": ["API - Métier"],
+            "parameters":[
+               {
+                  "name":"id",
+                  "in":"query",
+                  "description":"L'ID de l'employé à ajouter",
+                  "required":true,
+                  "schema":{
+                     "type":"string"
+                  }
+               },
+               {
+                  "name":"name",
+                  "in":"query",
+                  "description":"Le nom de l'employé à ajouter",
+                  "required":true,
+                  "schema":{
+                     "type":"string"
+                  }
+               },
+               {
+                  "name":"lastname",
+                  "in":"query",
+                  "description":"Le nom de famille de l'employé à ajouter",
+                  "required":true,
+                  "schema":{
+                     "type":"string"
+                  }
+               },
+               {
+                  "name":"salary",
+                  "in":"query",
+                  "description":"Le salaire de l'employé à ajouter",
+                  "required":true,
+                  "schema":{
+                     "type":"string"
+                  }
+               },
+               {
+                  "name":"level",
+                  "in":"query",
+                  "description":"Le niveau de l'employé à ajouter",
+                  "required":true,
+                  "schema":{
+                     "type":"string"
+                  }
+               }
+            ],
+            "responses":{
+               "201":{
+                  "description":"L'employé a été ajouté avec succès"
+               },
+               "400":{
+                  "description":"L'employé n'a pas été ajouté"
+               },
+               "409":{
+                  "description":"L'employé existe déjà"
+               }
+            }
+         }
+      },
+      "/api/modifier/{id}":{
+         "post":{
+            "summary":"Modifier un employé",
+            "description":"Modifier les informations d'un employé existant",
+            "tags": ["API - Métier"],
+            "parameters":[
+               {
+                  "name":"id",
+                  "in":"path",
+                  "description":"L'ID de l'employé à modifier",
+                  "required":true,
+                  "schema":{
+                     "type":"string"
+                  }
+               },
+               {
+                  "name":"name",
+                  "in":"query",
+                  "description":"Le nouveau nom de l'employé",
+                  "required":true,
+                  "schema":{
+                     "type":"string"
+                  }
+               },
+               {
+                  "name":"lastname",
+                  "in":"query",
+                  "description":"Le nouveau nom de famille de l'employé",
+                  "required":true,
+                  "schema":{
+                     "type":"string"
+                  }
+               },
+               {
+                  "name":"salary",
+                  "in":"query",
+                  "description":"Le nouveau salaire de l'employé",
+                  "required":true,
+                  "schema":{
+                     "type":"string"
+                  }
+               },
+               {
+                  "name":"level",
+                  "in":"query",
+                  "description":"Le nouveau niveau de l'employé",
+                  "required":true,
+                  "schema":{
+                     "type":"string"
+                  }
+               }
+            ],
+            "responses":{
+               "200":{
+                  "description":"L'employé a été modifié avec succès"
+               },
+               "400":{
+                  "description":"L'employé n'a pas été modifié"
+               },
+               "404":{
+                "description":"L'employé n'existe pas"
+             },
+               "409":{
+                  "description":"Une erreur est survenue lors de la modification de l'employé"
+               }
+            }
+         }
+      },
+      "/api/supprimer":{
+         "delete":{
+            "summary":"Supprimer un employé",
+            "description":"Supprimer un employé existant de la liste des employés",
+            "tags": ["API - Métier"],
+            "parameters":[
+               {
+                  "name":"id",
+                  "in":"query",
+                  "description":"L'ID de l'employé à supprimer",
+                  "required":true,
+                  "schema":{
+                     "type":"string"
+                  }
+               }
+            ],
+            "responses":{
+               "200":{
+                  "description":"L'employé a été supprimé avec succès"
+               },
+               "400":{
+                  "description":"Une erreur est survenue lors de la suppression de l'employé"
+               }
+            }
+         }
+      },
+      "/api/deleteall":{
+          "delete":{
+             "summary":"Admin - Supprimer les données",
+             "description":"Supprimer les données",
+             "tags": ["API - Admin"],
+             "parameters":[
+                {
+                   "name":"authorization",
+                   "in":"header",
+                   "description":"Admin API token",
+                   "required":true,
+                   "schema":{
+                      "type":"string"
+                   }
+                }
+             ],
+             "responses":{
+                "200":{
+                   "description":"OK"
+                },
+                "400":{
+                   "description":"Bad request"
+                },
+                "401":{
+                   "description":"Token manquant"
+                },
+                "403":{
+                   "description":"Accès interdit, token invalide"
+                }
+             }
+          }
+       },
+       "/api/datatest":{
+          "post":{
+             "summary":"Admin - Restaurer les données de test",
+             "description":"Restaurer les données de test",
+             "tags": ["API - Admin"],
+             "parameters":[
+                {
+                   "name":"authorization",
+                   "in":"header",
+                   "description":"Admin API token",
+                   "required":true,
+                   "schema":{
+                      "type":"string"
+                   }
+                }
+             ],
+             "responses":{
+                "201":{
+                   "description":"OK"
+                },
+                "400":{
+                   "description":"Bad request"
+                },
+                "401":{
+                   "description":"Token manquant"
+                },
+                "403":{
+                   "description":"Accès interdit, token invalide"
+                }
+             }
+          }
+       }
+   },
+   "components":{
+      "schemas":{
+         "Employee":{
+            "type":"object",
+            "properties":{
+               "id":{
+                  "type":"string"
+               },
+               "name":{
+                  "type":"string"
+               },
+               "lastname":{
+                  "type":"string"
+               },
+               "salary":{
+                  "type":"string"
+               },
+               "level":{
+                  "type":"string"
+               },
+               "time":{
+                  "type":"number"
+               }
+            },
+            "required":[
+               "id",
+               "name",
+               "lastname",
+               "salary",
+               "level",
+               "time"
+            ]
+         }
+      }
+   }
+ }

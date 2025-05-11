@@ -1,5 +1,5 @@
-import { describe, it, expect, beforeAll } from "vitest";
 import supertest from "supertest";
+import { beforeAll, describe, expect, it } from "vitest";
 
 import { Server } from "../server";
 
@@ -28,25 +28,25 @@ describe("Server", () => {
 		expect(res.body).toHaveLength(1);
 	});
 
-	it("should have a 409 error on ajouter endpoint call with negative salary", async () => {
+	it("should have a 400 error on ajouter endpoint call with negative salary", async () => {
 		const res = await request.post(
 			"/api/ajouter?id=test&name=doe&lastname=john&salary=-10&level=1",
 		);
-		expect(res.status).toBe(409);
+		expect(res.status).toBe(400);
 	});
 
-	it("should have a 409 error on ajouter endpoint call with level > 10", async () => {
+	it("should have a 400 error on ajouter endpoint call with level > 10", async () => {
 		const res = await request.post(
 			"/api/ajouter?id=test&name=doe&lastname=john&salary=10&level=11",
 		);
-		expect(res.status).toBe(409);
+		expect(res.status).toBe(400);
 	});
 
-	it("should have a 409 error on ajouter endpoint call without id", async () => {
+	it("should have a 400 error on ajouter endpoint call without id", async () => {
 		const res = await request.post(
 			"/api/ajouter?name=doe&lastname=john&salary=10&level=4",
 		);
-		expect(res.status).toBe(409);
+		expect(res.status).toBe(400);
 	});
 
 	it("should have a 409 error on ajouter endpoint call and employee already exists", async () => {
@@ -64,17 +64,25 @@ describe("Server", () => {
 		expect(res.status).toBe(201);
 	});
 
-	it("should have a 409 error on modifier endpoint call and employee doesn't exists", async () => {
+	it("should have a 404 error on modifier endpoint call and employee doesn't exists", async () => {
 		const res = await request.post(
-			"/api/modifier?id=notexists&name=doe&lastname=john&salary=10&level=4",
+			"/api/modifier/notexists?name=doe&lastname=john&salary=10&level=4",
 		);
-		expect(res.status).toBe(409);
+		expect(res.status).toBe(404);
 		expect(res.text).toEqual("Le matricule n'a pas été trouvé");
+	});
+
+	it("should have a 400 error on modifier endpoint call and employee not valid", async () => {
+		const res = await request.post(
+			"/api/modifier/SAL1?name=doe&lastname=john&salary=-10&level=4",
+		);
+		expect(res.status).toBe(400);
+		expect(res.text).toEqual("Le salaire doit être un nombre positif");
 	});
 
 	it("should update employee on modifier endpoint call", async () => {
 		const res = await request.post(
-			"/api/modifier?id=SAL1&name=DURAND&lastname=Pierre&salary=333&level=2",
+			"/api/modifier/SAL1?name=DURAND&lastname=Pierre&salary=333&level=2",
 		);
 		expect(res.status).toBe(200);
 	});
@@ -91,8 +99,34 @@ describe("Server", () => {
 		expect(res.text).toEqual("Le salarié a bien été supprimé");
 	});
 
-	it("should delete all employees on deleteall endpoint call", async () => {
+	it("should have a 401 error on  deleteall without Authorization", async () => {
 		const res = await request.delete("/api/deleteall");
+		expect(res.status).toBe(401);
+	});
+
+	it("should have a 401 error on  deleteall without Authorization", async () => {
+		const res = await request.delete("/api/deleteall");
+		expect(res.status).toBe(401);
+	});
+
+	it("should have a 403 error on  deleteall with bad Authorization", async () => {
+		const res = await request
+			.delete("/api/deleteall")
+			.set("Authorization", "badToken"); 
+		expect(res.status).toBe(403);
+	});
+
+	it("should have a 403 error on  deleteall with bad Authorization", async () => {
+		const res = await request
+			.delete("/api/deleteall")
+			.set("Authorization", "badToken"); 
+		expect(res.status).toBe(403);
+	});
+
+	it("should delete all employees on datatest endpoint call", async () => {
+		const res = await request
+			.delete("/api/deleteall")
+			.set("Authorization", "monTokenSecret123"); 		
 		expect(res.status).toBe(200);
 
 		const all = await request.get("/api/rechercher?mode=all");
@@ -100,14 +134,10 @@ describe("Server", () => {
 	});
 
 	it("should restore employees data on datatest endpoint call", async () => {
-		const res = await request.delete("/api/deleteall");
-		expect(res.status).toBe(200);
-
-		const all = await request.get("/api/rechercher?mode=all");
-		expect(all.body).toHaveLength(0);
-
-		const reset = await request.delete("/api/datatest");
-		expect(reset.status).toBe(200);
+		const reset = await request
+			.post("/api/datatest")
+			.set("Authorization", "monTokenSecret123"); 
+		expect(reset.status).toBe(201);
 
 		const all2 = await request.get("/api/rechercher?mode=all");
 		expect(all2.body).toHaveLength(2);
