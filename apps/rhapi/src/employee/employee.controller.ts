@@ -63,7 +63,7 @@ class EmployeeController {
 			try {
 				await this.#employeeService.add(
 					req.query.id as string,
-					req.query.name as string,
+					req.query.firstname as string,
 					req.query.lastname as string,
 					req.query.salary as string,
 					req.query.level as string,
@@ -82,7 +82,7 @@ class EmployeeController {
 			try {
 				await this.#employeeService.update(
 					req.params.id as string,
-					req.query.name as string,
+					req.query.firstname as string,
 					req.query.lastname as string,
 					req.query.salary as string,
 					req.query.level as string,

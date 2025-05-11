@@ -40,8 +40,8 @@
         <tbody>
           <tr v-for="employee, index in employees" :key="employee.id">
             <td :id="'empId_' + index">{{ employee.id }}</td>
-            <td :id="'empName_' + index">{{ employee.name }}</td>
             <td :id="'empLasttname_' + index">{{ employee.lastname }}</td>
+            <td :id="'empFirstname_' + index">{{ employee.firstname }}</td>
             <td :id="'empSalary_' + index">{{ employee.salary }}</td>
             <td :id="'empLevel_' + index">{{ employee.level }}</td>
             <td>
@@ -54,7 +54,7 @@
     </section>
 
     <section id="update-employee">
-      <Employee v-if="updateMode" :id="employee.id" :name="employee.name" :lastname="employee.lastname"
+      <Employee v-if="updateMode" :id="employee.id" :firstname="employee.firstname" :lastname="employee.lastname"
           :salary="employee.salary" :level="employee.level" @updated="updateEmployee" />
     </section>
 

@@ -4,8 +4,8 @@
     <form @submit.prevent="submit">
       <label>Matricule: <input v-model="employee.id" placeholder="ID" :disabled="!creation" :id="creation ? 'creerEmpId' : 'modifierEmpId'"></label>
       <div class="grid">
-        <label>Nom: <input v-model="employee.name" placeholder="Nom" :id="creation ? 'creerEmpName' : 'modifierEmpName'"></label>
-        <label>Prénom: <input v-model="employee.lastname" placeholder="Prénom" :id="creation ? 'creerEmpLastname' : 'modifierEmpLastname'"></label>
+        <label>Nom: <input v-model="employee.lastname" placeholder="Nom" :id="creation ? 'creerEmpLastName' : 'modifierEmpLastName'"></label>
+        <label>Prénom: <input v-model="employee.firstname" placeholder="Prénom" :id="creation ? 'creerEmpFirstname' : 'modifierEmpFirstname'"></label>
       </div>
       <div class="grid">
         <label>Niveau: <input v-model="employee.level" placeholder="Niveau" :id="creation ? 'creerEmpLevel' : 'modifierEmpLevel'"></label>
@@ -25,7 +25,7 @@ import { emptyEmployee } from '../services/employee.service'
 
 const props = defineProps({
   id: String,
-  name: String,
+  firstname: String,
   lastname: String,
   level: String,
   salary: String,
@@ -35,29 +35,15 @@ const emit = defineEmits(['created', 'updated'])
 
 const creation = !props.id?.length
 
-// let employee = creation ? {
-//   id: "",
-//   name: "",
-//   lastname: "",
-//   level: "",
-//   salary: ""
-// } : {
-//   id: props.id,
-//   name: props.name,
-//   lastname: props.lastname,
-//   level: props.level,
-//   salary: props.salary,
-// }
-
 const employee = reactive(creation ? {
   id: "",
-  name: "",
+  firstname: "",
   lastname: "",
   level: "",
   salary: ""
 } : {
   id: props.id,
-  name: props.name,
+  firstname: props.firstname,
   lastname: props.lastname,
   level: props.level,
   salary: props.salary,

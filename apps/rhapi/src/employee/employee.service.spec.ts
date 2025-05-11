@@ -10,7 +10,7 @@ describe("Employee unit tests", () => {
 
 	it("should list employees", async () => {
 		const employees = await employeeService.list();
-		expect(employees).toHaveLength(2);
+		expect(employees).toHaveLength(3);
 	});
 
 	it("should get employee by name", async () => {
@@ -20,48 +20,48 @@ describe("Employee unit tests", () => {
 
 	it("should have an error while adding employee with negative salary", async () => {
 		expect(() =>
-			employeeService.add("test", "doe", "john", "-10", "1"),
+			employeeService.add("test", "john", "doe", "-10", "1"),
 		).rejects.toThrow("Le salaire doit être un nombre positif");
 	});
 
 	it("should have an error while adding employee with level > 10", async () => {
 		expect(() =>
-			employeeService.add("test", "doe", "john", "10", "11"),
+			employeeService.add("test", "john", "doe", "10", "11"),
 		).rejects.toThrow("Le niveau doit être > -10 et < 10");
 	});
 
-	it("should have an error while adding employee without name", async () => {
+	it("should have an error while adding employee without firstname", async () => {
 		expect(() =>
-			employeeService.add("test", "", "john", "10", "4"),
-		).rejects.toThrow("Le nom est obligatoire");
+			employeeService.add("test", "", "doe", "10", "4"),
+		).rejects.toThrow("Le prénom est obligatoire");
 	});
 
 	it("should have an error while adding employee without lastname", async () => {
 		expect(() =>
-			employeeService.add("test", "doe", "", "10", "4"),
-		).rejects.toThrow("Le prénom est obligatoire");
+			employeeService.add("test", "john", "", "10", "4"),
+		).rejects.toThrow("Le nom est obligatoire");
 	});
 
 	it("should have an error while adding employee without id", async () => {
 		expect(() =>
-			employeeService.add("", "doe", "john", "10", "4"),
+			employeeService.add("", "john", "doe", "10", "4"),
 		).rejects.toThrow("Le matricule est obligatoire");
 	});
 
 	it("should have an error while adding employee if employee already exists", async () => {
 		expect(() =>
-			employeeService.add("SAL1", "doe", "john", "10", "4"),
+			employeeService.add("SAL1", "john", "doe", "10", "4"),
 		).rejects.toThrow("Le matricule existe déjà");
 	});
 
 	it("should create employee", async () => {
-		await employeeService.add("DOEJ", "doe", "john", "10", "4");
+		await employeeService.add("DOEJ", "john", "doe", "10", "4");
 		const employee = await employeeService.getByName("doe");
 		expect(employee).toEqual([
 			expect.objectContaining({
 				id: "DOEJ",
-				name: "doe",
-				lastname: "john",
+				firstname: "john",
+				lastname: "doe",
 				salary: "10",
 				level: "4",
 			}),
@@ -70,18 +70,18 @@ describe("Employee unit tests", () => {
 
 	it("should have an error while updating employee if doesn't exists", async () => {
 		expect(() =>
-			employeeService.update("notexists", "doe", "john", "10", "4"),
+			employeeService.update("notexists", "john", "doe", "10", "4"),
 		).rejects.toThrow("Le matricule n'a pas été trouvé");
 	});
 
 	it("should update employee", async () => {
-		await employeeService.update("SAL1", "DURAND", "Pierre", "333", "2");
+		await employeeService.update("SAL1", "Pierre", "DURAND", "333", "2");
 		const employee = await employeeService.getByName("DURAND");
 		expect(employee).toEqual([
 			expect.objectContaining({
 				id: "SAL1",
-				name: "DURAND",
-				lastname: "Pierre",
+				firstname: "Pierre",
+				lastname: "DURAND",
 				salary: "333",
 				level: "2",
 			}),

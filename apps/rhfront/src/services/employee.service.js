@@ -8,7 +8,7 @@ const BASE_URL = import.meta.env.VITE_GITPOD_WORKSPACE_URL
 
 async function create(employee) {
 	const { data } = await axios.post(
-		`${BASE_URL}/api/ajouter?id=${employee.id}&name=${employee.name}&lastname=${employee.lastname}&salary=${employee.salary}&level=${employee.level}`,
+		`${BASE_URL}/api/ajouter?id=${employee.id}&firstname=${employee.firstname}&lastname=${employee.lastname}&salary=${employee.salary}&level=${employee.level}`,
 	);
 	return data;
 }
@@ -25,7 +25,7 @@ async function search(name) {
 
 async function update(employee) {
 	const { data } = await axios.post(
-		`${BASE_URL}/api/modifier/${employee.id}?name=${employee.name}&lastname=${employee.lastname}&salary=${employee.salary}&level=${employee.level}`,
+		`${BASE_URL}/api/modifier/${employee.id}?firstname=${employee.firstname}&lastname=${employee.lastname}&salary=${employee.salary}&level=${employee.level}`,
 	);
 	return data;
 }
@@ -54,7 +54,7 @@ async function resetData(apiToken) {
 
 const emptyEmployee = {
 	id: "",
-	name: "",
+	firstname: "",
 	lastname: "",
 	salary: "",
 	level: "",

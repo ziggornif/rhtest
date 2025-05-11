@@ -15,8 +15,8 @@ class EmployeeService {
 		});
 	}
 
-	async getByName(name: string) {
-		const found = await this.#employeeRepository.getByName(name);
+	async getByName(lastname: string) {
+		const found = await this.#employeeRepository.getByName(lastname);
 		return found.sort(function (b, a) {
 			return a.time - b.time;
 		});
@@ -24,7 +24,7 @@ class EmployeeService {
 
 	async #validateEmployeePayload(
 		id: string,
-		name: string,
+		firstname: string,
 		lastname: string,
 		salary: string,
 		level: string,
@@ -43,8 +43,8 @@ class EmployeeService {
 		);
 
 		// rules required
-		assert(name.length > 0, "Le nom est obligatoire");
-		assert(lastname.length > 0, "Le prénom est obligatoire");
+		assert(firstname.length > 0, "Le prénom est obligatoire");
+		assert(lastname.length > 0, "Le nom est obligatoire");
 		assert(id.length > 0, "Le matricule est obligatoire");
 
 		const employees = await this.list();
@@ -62,14 +62,14 @@ class EmployeeService {
 
 	async add(
 		id: string,
-		name: string,
+		firstname: string,
 		lastname: string,
 		salary: string,
 		level: string,
 	) {
 		await this.#validateEmployeePayload(
 			id,
-			name,
+			firstname,
 			lastname,
 			salary,
 			level,
@@ -78,7 +78,7 @@ class EmployeeService {
 
 		this.#employeeRepository.add({
 			id,
-			name,
+			firstname,
 			lastname,
 			salary,
 			level,
@@ -88,14 +88,14 @@ class EmployeeService {
 
 	async update(
 		id: string,
-		name: string,
+		firstname: string,
 		lastname: string,
 		salary: string,
 		level: string,
 	) {
 		await this.#validateEmployeePayload(
 			id,
-			name,
+			firstname,
 			lastname,
 			salary,
 			level,
@@ -104,7 +104,7 @@ class EmployeeService {
 
 		this.#employeeRepository.update({
 			id,
-			name,
+			firstname,
 			lastname,
 			salary,
 			level,

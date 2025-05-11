@@ -14,7 +14,7 @@ class EmployeeRepository {
 	}
 
 	getByName(name: string) {
-		return this.#employees.filter((salarie) => salarie.name === name);
+		return this.#employees.filter((salarie) => salarie.lastname === name);
 	}
 
 	add(employee: Employee) {
@@ -26,7 +26,7 @@ class EmployeeRepository {
 		if (!found) {
 			return;
 		}
-		found.name = update.name;
+		found.firstname = update.firstname;
 		found.lastname = update.lastname;
 		found.salary = update.salary;
 		found.level = update.level;

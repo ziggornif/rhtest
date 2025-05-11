@@ -1,6 +1,6 @@
 type Employee = {
 	id: string;
-	name: string;
+	firstname: string;
 	lastname: string;
 	salary: string;
 	level: string;

@@ -2,24 +2,24 @@
   "data": [
     {
       "id": "SAL1",
-      "name": "DURAND",
-      "lastname": "Pierre",
+      "lastname": "DURAND",
+      "firstname": "Pierre",
       "salary": "12345",
       "level": "3",
       "time": 1482963573074
     },
     {
       "id": "SAL2",
-      "name": "DUPOND",
-      "lastname": "René",
+      "lastname": "DUPOND",
+      "firstname": "René",
       "salary": "34554",
       "level": "-4",
       "time": 1482963592496
     },
     {
       "id": "TEST",
-      "name": "TEST",
-      "lastname": "Noise",
+      "lastname": "TEST",
+      "firstname": "Noise",
       "salary": "12345",
       "level": "1",
       "time": 1746525939151
