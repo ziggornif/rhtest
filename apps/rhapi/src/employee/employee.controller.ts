@@ -1,5 +1,5 @@
-import type { Request, Response, Router } from "express";
-import router from "express-promise-router";
+import type { Request, Response } from "express";
+import { Router } from "express"
 import { Counter } from "prom-client";
 
 import { EmployeeService } from "./employee.service";
@@ -12,7 +12,7 @@ class EmployeeController {
 	#searchCounter: Counter;
 
 	constructor(employeeService: EmployeeService) {
-		this.#router = router();
+		this.#router = Router({ mergeParams: true });
 		this.#employeeService = employeeService;
 		this.#searchCounter = new Counter({
 			name: "search_counter",

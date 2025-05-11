@@ -19,37 +19,37 @@ describe("Employee unit tests", () => {
 	});
 
 	it("should have an error while adding employee with negative salary", async () => {
-		expect(() =>
+		await expect(() =>
 			employeeService.add("test", "john", "doe", "-10", "1"),
 		).rejects.toThrow("Le salaire doit être un nombre positif");
 	});
 
 	it("should have an error while adding employee with level > 10", async () => {
-		expect(() =>
+		await expect(() =>
 			employeeService.add("test", "john", "doe", "10", "11"),
 		).rejects.toThrow("Le niveau doit être > -10 et < 10");
 	});
 
 	it("should have an error while adding employee without firstname", async () => {
-		expect(() =>
+		await expect(() =>
 			employeeService.add("test", "", "doe", "10", "4"),
 		).rejects.toThrow("Le prénom est obligatoire");
 	});
 
 	it("should have an error while adding employee without lastname", async () => {
-		expect(() =>
+		await expect(() =>
 			employeeService.add("test", "john", "", "10", "4"),
 		).rejects.toThrow("Le nom est obligatoire");
 	});
 
 	it("should have an error while adding employee without id", async () => {
-		expect(() =>
+		await expect(() =>
 			employeeService.add("", "john", "doe", "10", "4"),
 		).rejects.toThrow("Le matricule est obligatoire");
 	});
 
 	it("should have an error while adding employee if employee already exists", async () => {
-		expect(() =>
+		await expect(() =>
 			employeeService.add("SAL1", "john", "doe", "10", "4"),
 		).rejects.toThrow("Le matricule existe déjà");
 	});
@@ -69,7 +69,7 @@ describe("Employee unit tests", () => {
 	});
 
 	it("should have an error while updating employee if doesn't exists", async () => {
-		expect(() =>
+		await expect(() =>
 			employeeService.update("notexists", "john", "doe", "10", "4"),
 		).rejects.toThrow("Le matricule n'a pas été trouvé");
 	});
